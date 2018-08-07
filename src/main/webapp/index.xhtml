@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<f:metadata>
+	<f:viewParam name="filter" value="#{themeBean.filter}" />
+</f:metadata>
+
+<h:body>
+
+
+	<ui:composition template="/template/_template.xhtml">
+		<ui:define name="tbody">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h:form id="formSearch" styleClass="form-horizontal">
+									<div class="form-group">
+										<div class="col-md-10">
+											<h:inputText id="filter" styleClass="form-control"
+												pt:placeholder="Que tema você procura?"
+												value="#{themeBean.filter}" name="filter" />
+										</div>
+										<h:commandLink styleClass="btn btn-default"
+											action="#{themeBean.pressButton}">
+											<i class="fa fa-search"></i>
+										</h:commandLink>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-12" rendered="#{loginBean.user eq 'Administrador'}">
+					
+						<h:messages errorStyle="color:red" infoStyle="color:blue"
+							layout="table" />
+						<div class="panel panel-default">
+							<div class="panel-heading">Temas</div>
+							<div class="panel-body">
+								<button id='button-tema' class="btn btn-primary">
+									Cadastrar Tema</button>
+							</div>
+							<div id="cadastrar-tema">
+								<div class="panel panel-default panel-commentary">
+									<div class="panel-heading">Cadastrar Tema</div>
+									<div class="panel-body panel-body-padding-bottom">
+										<h:form id="formTheme" styleClass="form-horizontal">
+											<div class="form-group">
+												<h:outputLabel for="tema" accesskey="N"
+													styleClass="col-md-1 control-label">
+													<h:outputText value="Título " />
+												</h:outputLabel>
+												<div class="col-md-3">
+													<h:inputText id="theme" value="#{themeBean.theme.theme}"
+														styleClass="form-control" required="true"
+														requiredMessage="Nome é obrigatório"
+														pt:placeholder="Digite o título do tema aqui!" />
+												</div>
+												<h:commandButton id="bt_theme" action="#{themeBean.salvar}"
+													value="Cadastrar" styleClass="btn btn-primary" />
+											</div>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="list-group">
+								<div class="panel-heading list-group-item-heading">
+									<h4>Temas</h4>
+								</div>
+								<c:choose>
+									<c:when test="#{fn:length(themeBean.themes) eq 0}">
+										<div
+											class="panel-body panel-body-padding-bottom list-group-item">
+											<p class="none">Nenhum tema foi encontrado!</p>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="theme" items="#{themeBean.themes}">
+											<h:link outcome="posts" styleClass="list-group-item">
+												<f:param name="theme_id" value="#{theme.id}" />
+												<h4>#{theme.theme}</h4>
+											</h:link>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="button_top btn btn-primary">Topo</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	
+<f:metadata>
+	<f:viewParam name="answer_id" value="#{editAnswerBean.answer.id}" />
+	<f:event type="preRenderView" listener="#{editAnswerBean.onload}" />
+</f:metadata>
+
+<h:body>
+	<ui:composition template="/template/_template.xhtml">
+		<ui:define name="tbody">
+			<div class="container">
+				<h:messages 
+				errorStyle="color:red" infoStyle="color:blue"
+								layout="table" />
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<h:form id="formEditPost" styleClass="form-horizontal">
+							<div class="modal-body">
+								<div class="form-group">
+									<div class="col-md-12">
+										<h:inputTextarea id="mensagem" styleClass="form-control"
+											style="resize: none;" required="true"
+											requiredMessage="Conteúdo é obrigatório"
+											pt:placeholder="Defina o conteúdo de sua postagem aqui!" 
+											cols="50" rows="6" value="#{editAnswerBean.answer.message}" />
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<h:commandButton id="bt_edit_answer" action="#{editAnswerBean.salvar}"
+														value="Salvar Alterações" styleClass="btn btn-primary" />
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

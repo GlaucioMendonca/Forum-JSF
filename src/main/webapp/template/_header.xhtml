@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:component>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<h:form id="formHeader">
+		<!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
+		<div id="navbar">
+			<h:panelGroup rendered="#{loginBean.usuarioLogado.perfil eq 'ADMIN'}">
+				<ul class="nav navbar-nav">
+					<li><h:commandLink action="/contato/consulta?faces-redirect=true">Contatos</h:commandLink></li>
+					<li><h:commandLink action="/operadora/consulta">Operadoras</h:commandLink></li>
+				</ul>
+			</h:panelGroup>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false">#{loginBean.usuarioLogado.nome} (#{loginBean.usuarioLogado.perfil})<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><h:commandLink action="#{loginBean.logout}"><i class="glyphicon glyphicon-log-out"> </i> Sair</h:commandLink></li>
+					</ul></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+		</h:form>
+	</div>
+</nav>
+</ui:component>
+</html>

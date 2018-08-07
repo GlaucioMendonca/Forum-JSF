@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+
+	<ui:composition template="/template/_template.xhtml">
+		<ui:define name="tbody">
+
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Register</div>
+					<h:form id="formLogin" styleClass="form-horizontal">
+						<h:messages errorStyle="color:red" infoStyle="color:blue"
+							layout="table" />
+
+						<div class="row">
+							<br />
+							<h:outputLabel for="nome" accesskey="N"
+								styleClass="col-md-3 control-label">
+								<h:outputText value="Nome: " />
+							</h:outputLabel>
+
+							<div class="col-md-5">
+								<h:inputText id="nome" value="#{registerBean.nome}"
+									styleClass="form-control" required="true"
+									requiredMessage="Nome é obrigatório!" />
+							</div>
+						</div>
+
+						<div class="row">
+						<br />
+							<h:outputLabel for="cpf" accesskey="N"
+								styleClass="col-md-3 control-label">
+								<h:outputText value="CPF: " />
+							</h:outputLabel>
+
+							<div class="col-md-5">
+								<h:inputText id="cpf" value="#{registerBean.cpf}"
+									styleClass="form-control" required="true"
+									requiredMessage="cpf é obrigatório" />
+
+							</div>
+						</div>
+
+						<div class="row">
+						<br />
+							<h:outputLabel for="email" accesskey="N"
+								styleClass="col-md-3 control-label">
+								<h:outputText value="Email: " />
+							</h:outputLabel>
+
+							<div class="col-md-5">
+								<h:inputText id="email" value="#{registerBean.email}"
+									styleClass="form-control" required="true"
+									requiredMessage="email é obrigatório" />
+
+							</div>
+						</div>
+
+						<div class="row">
+						<br />
+							<h:outputLabel for="senha" accesskey="N"
+								styleClass="col-md-3 control-label">
+								<h:outputText value="Senha: " />
+							</h:outputLabel>
+
+							<div class="col-md-5">
+								<h:inputSecret id="senha" value="#{registerBean.password}"
+									styleClass="form-control" required="true"
+									requiredMessage="Senha é obrigatório" />
+
+							</div>
+						</div>
+
+						<div class="row">
+						<br />
+							<h:outputLabel for="confirmaSenha" accesskey="N"
+								styleClass="col-md-3 control-label">
+								<h:outputText value="Confirme a Senha: " />
+							</h:outputLabel>
+
+							<div class="col-md-5">
+								<h:inputSecret id="confirmaSenha"
+									value="#{registerBean.cPassword}" styleClass="form-control"
+									required="true" requiredMessage="Senha não cofirmada." />
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+							</div>
+							<div class="col-md-3">
+								<br />
+								<h:commandButton id="bt_login" action="#{registerBean.store}"
+									value="Login" styleClass="btn btn-primary" />
+							</div>
+						</div>
+					</h:form>
+
+					<div class="panel-body"></div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>

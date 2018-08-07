@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	lang="pt-br">
+<h:head>
+	<title><ui:insert name="ttitle">Fórum</ui:insert></title>
+	<h:outputStylesheet library="css" name="app.css" target="head" />
+	<h:outputStylesheet library="css" name="style.css" target="head" />
+	<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"/>
+</h:head>
+
+<h:body>
+	<div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <h:link styleClass="navbar-brand" outcome="index">
+                    	Fórum
+                    </h:link>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav"> &nbsp;</ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        <li> <h:link styleClass="navbar-brand" outcome="login" rendered="#{empty loginBean.user }">Login </h:link></li>
+                        <li><h:link styleClass="navbar-brand" outcome="register" rendered="#{empty loginBean.user }">Register </h:link></li>
+                        
+                        <h:form id="formLogout" styleClass="form-horizontal">
+                        <li><h:commandLink action="#{loginBean.logout}" rendered="#{not empty loginBean.user }">Logout</h:commandLink></li>
+                        </h:form>
+					</ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- body of pages -->
+		<ui:insert name="tbody">
+			Conteúdo vazio! Defina uma área tbody no documento com &lt;ui:define&gt;.
+		</ui:insert>
+		
+	</div>
+
+	<h:outputScript library="js" name="jquery.min.js" target="body"/>
+	<h:outputScript library="js" name="app.js" target="body"/>
+	<h:outputScript library="js" name="script.js" target="body"/>
+</h:body>
+</html>
